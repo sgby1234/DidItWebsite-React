@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, FormGroup, FormControl, Jumbotron } from "react-bootstrap";
 import axios from 'axios';
-
+import { Redirect } from 'react-router-dom';
+import '../globals.js';
 export class LoginPage extends Component {
   constructor(props)
   {
     super(props);
     this.state =
     {
+      message:"",
       email: "",
       password: "",
     };
@@ -26,34 +28,63 @@ export class LoginPage extends Component {
 
   handleSubmit = event => {
     let url = "http://localhost:8080/";
-    /*let info =
-    {
-      email: this.state.email,
-      password: this.state.password,
-    }*/
+ 
     event.preventDefault();
-    axios.post(url + "processLogin", 
+    /*Changed to processLogin2 temporarily while trying to see if the cookie will set now */
+ 
+    axios.post(url + "processLogin",
     {
       email: this.state.email,
       password: this.state.password
     })
     .then( res => {
+      
         console.log(res);
         console.log(res.data);
-        
+        //res.data = did they log in successfully
+        if(res.data)
+        {
+            global.loggedIn=true;
+            this.props.history.push('/');
+        }
+        else
+        {
+          this.setState({message:"Invalid Credentials. Cannot Login"})
+        }
     });
 
+  /*Attempt to use fetch and not axios 
+    fetch(url+"processLogin2", 
+      {
+        method: 'POST',
+        headers : {"Content-Type": "application/json"},
+        body:JSON.stringify({email:this.state.email, password:this.state.password})}).then( res => {
+      
+      console.log(res);
+      console.log(res.data);
+      //res.data = did they log in successfully
+      if(res.data.)
+      {
+          global.loggedIn=true;
+          this.props.history.push('/');
+      }
+      else
+      {
+        this.setState({message:"Invalid Credentials. Cannot Login"})
+      }
+  })    ;
   }
   /*  email: this.state.email, password: this.state.password */
 
-  
+}
   
 
   render() {
+
     return (
       <div className="Login">
       <Jumbotron><h1>Login</h1> </Jumbotron>
-        <h4>{this.props.message}</h4>
+        
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" >
            <label >Email</label>
@@ -72,6 +103,7 @@ export class LoginPage extends Component {
               type="password"
             />
           </FormGroup>
+          <h5>{this.state.message}</h5>
           <Button
             block
             disabled={!this.validateForm()}
@@ -83,5 +115,4 @@ export class LoginPage extends Component {
       </div>
 
     )
-  }
-}
+    }}

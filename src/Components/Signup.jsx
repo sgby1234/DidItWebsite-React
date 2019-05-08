@@ -4,6 +4,8 @@ import '../App.css';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
+import '../globals.js';
+
 
 export class Signup extends Component {
   constructor(props)
@@ -45,7 +47,9 @@ export class Signup extends Component {
 
         console.log(res);
         console.log(res.data);
-        this.setState({
+        
+      
+          this.setState({
           redirect: true
         })
        /*  redirect to login page now  - this way has issues. because it puts the message in history.location.message. Which is not a regular prop

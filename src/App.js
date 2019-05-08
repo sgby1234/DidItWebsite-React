@@ -10,6 +10,9 @@ import { ConnectionTrial } from './ConnectionTrial';
 import { Goals } from './Components/Goals';
 import { NewGoal } from './Components/NewGoal';
 import { NotFoundPage } from './Components/NotFoundPage';
+import { GoalBox } from './Components/GoalBox';
+import { Goal } from './Components/Goal';
+import './globals.js';
 
 class App extends Component {
   render() {
@@ -22,7 +25,9 @@ class App extends Component {
           <Route path='/goals' component={Goals} />
           <Route path='/trial' component={ConnectionTrial} />
           <Route path='/newGoal' component={NewGoal}/>
-          <Route path="" component={ NotFoundPage }/>
+          <Route path='/goalBox' component={ GoalBox }/>
+          <Route path='/goal' component={Goal}/>
+          <Route path='' component={ NotFoundPage }/>
         </Switch>
         
       </Router>

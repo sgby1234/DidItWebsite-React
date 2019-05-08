@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap';
+
 
 export class Goals extends Component {
   constructor(props)
@@ -8,9 +9,11 @@ export class Goals extends Component {
     super(props);
     this.state =
     {
-      goals: [],
+      goals: {},
       redirect: false
     };
+
+  
   }
 
 

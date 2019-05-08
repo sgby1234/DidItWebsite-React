@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'react-bootstrap';
+
   
 export class GoalBox extends Component {
 
