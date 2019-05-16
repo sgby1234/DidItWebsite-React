@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import axios from 'axios';
 import '../globals.js';
+import { GoalBox } from './GoalBox';
 
 export class NewGoal extends Component {
   render() {

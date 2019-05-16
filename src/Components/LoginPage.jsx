@@ -41,7 +41,7 @@ export class LoginPage extends Component {
       
         console.log(res);
         console.log(res.data);
-        //res.data = did they log in successfully
+        /*res.data = did they log in successfully*/
         if(res.data)
         {
             global.loggedIn=true;
@@ -51,31 +51,10 @@ export class LoginPage extends Component {
         {
           this.setState({message:"Invalid Credentials. Cannot Login"})
         }
+    
     });
 
-  /*Attempt to use fetch and not axios 
-    fetch(url+"processLogin2", 
-      {
-        method: 'POST',
-        headers : {"Content-Type": "application/json"},
-        body:JSON.stringify({email:this.state.email, password:this.state.password})}).then( res => {
-      
-      console.log(res);
-      console.log(res.data);
-      //res.data = did they log in successfully
-      if(res.data.)
-      {
-          global.loggedIn=true;
-          this.props.history.push('/');
-      }
-      else
-      {
-        this.setState({message:"Invalid Credentials. Cannot Login"})
-      }
-  })    ;
-  }
-  /*  email: this.state.email, password: this.state.password */
-
+ 
 }
   
 

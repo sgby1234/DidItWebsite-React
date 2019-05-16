@@ -9,7 +9,7 @@ export class GoalBox extends Component {
       super(props);
       this.state =
       {
-        checked: false
+        checked: this.props.checked
       };
     }
 
@@ -19,6 +19,7 @@ export class GoalBox extends Component {
             this.setState({
                 checked: false
               });
+            this.props.removeCheckMark();
 
         }
         else
@@ -26,6 +27,8 @@ export class GoalBox extends Component {
             this.setState({
                 checked: true
          });
+
+           this.props.addCheckMark();
         }
       
       }
@@ -37,8 +40,8 @@ export class GoalBox extends Component {
             {
                 /** Buttons content is based on whether it is checked or not. */
                 this.state.checked ? 
-                (<i class="far fa-square fa-8x"></i> ) : 
-                (<i class="fas fa-check fa-8x"></i> )
+                 (<i className="fas fa-check fa-s"></i> ):
+                 (<i className="far fa-square fa-s"></i> ) 
             }
       </Button>
 
