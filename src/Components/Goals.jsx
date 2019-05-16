@@ -40,8 +40,4 @@ export class Goals extends Component {
     )
   }
 }
-/*
-<ListGroup>
-<ListGroup.Item><Link to="/login">Study Chemistry</Link></ListGroup.Item>
-<ListGroup.Item>Hi2</ListGroup.Item>
-</ListGroup>*/
+
