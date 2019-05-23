@@ -34,7 +34,7 @@ export class NewGoal extends Component {
 
     }).then(res =>
       {
-        console.log(res.data);
+       
         //successful, redirect to all goals
         if(res.data)
         {
@@ -51,7 +51,7 @@ export class NewGoal extends Component {
 
   handleChange = event =>
   {
-    const value = event.target.type == 'checkbox' ? event.target.checked : event.target.value
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
      this.setState ({
       [event.target.id]: value,
      })
@@ -101,7 +101,7 @@ export class NewGoal extends Component {
             disabled={!this.validateForm()}
             type="submit"
           >
-            Login
+            Submit
           </Button>
         </form>
       </div>

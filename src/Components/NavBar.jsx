@@ -14,7 +14,7 @@ export default class NavBar extends Component {
   });
 }
   render() {
-    console.log("Global login is " + global.loggedIn)
+    
     return (
      
         <nav className="navbar navbar-light bg-light flex-row">
@@ -22,7 +22,7 @@ export default class NavBar extends Component {
         <Link to="/goals">Goals</Link>
         <Link to="/signup">About</Link>
         <Link to="/friends">Friends</Link>
-        {global.loggedIn? <a  href="" onClick={this.handleLogOut}>Log out</a>: <Link to="/signup">Log in</Link> }
+        {global.loggedIn? <a  href="" onClick={this.handleLogOut}>Log out</a>: <Link to="/login">Log in</Link> }
     
       </nav>
     )

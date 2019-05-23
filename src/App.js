@@ -12,6 +12,8 @@ import { NewGoal } from './Components/NewGoal';
 import { NotFoundPage } from './Components/NotFoundPage';
 import { GoalBox } from './Components/GoalBox';
 import { Goal } from './Components/Goal';
+import { Friends} from './Components/Friends';
+
 import './globals.js';
 
 class App extends Component {
@@ -26,6 +28,7 @@ class App extends Component {
           <Route path='/trial' component={ConnectionTrial} />
           <Route path='/newGoal' component={NewGoal}/>
           <Route path='/goalBox' component={ GoalBox }/>
+          <Route path='/friends' component = { Friends }/>
           <Route path='/goal' component={Goal}/>
           <Route path='' component={ NotFoundPage }/>
         </Switch>

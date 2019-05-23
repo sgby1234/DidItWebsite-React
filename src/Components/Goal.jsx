@@ -11,11 +11,12 @@ export class Goal extends Component {
        goalid: this.props.location.state.goalid,
        goalname: "yeah",
        amountCompleted: 0,
-       totalAmount:4,
+       totalAmount:0,
        isPublic: false,
        start: "",
        areChecked: [],
-       boxes: []
+       boxes: [],
+       message: ""
     }
 
 
@@ -32,6 +33,13 @@ export class Goal extends Component {
       console.log("Got response " + res.data)
     }
     )
+    //check if they are now finished: and write out message if they are
+    if(this.state.amountCompleted == this.state.totalAmount)
+          {
+            this.setState({
+              message: "Congratulations " + global.userName  + "!! Awesome work!"
+            })
+          }
   }
 
   componentDidMount(){
@@ -52,23 +60,27 @@ export class Goal extends Component {
         goalname: res.data.description,
       })
 
-      
+      //add values for true
       for(let i = 0; i < this.state.amountCompleted; i++)
       {
           this.state.areChecked.push(true);
       }
    
+      //add values for false
       for(let j = 0; j < (this.state.totalAmount - this.state.amountCompleted); j++)
       {
            this.state.areChecked.push(false);
       }
       
+      //map through the list of true and false, and create goalboxes, with check if true and empty if false
     this.setState ({
      boxes: this.state.areChecked.map(item => <GoalBox onClick={this.handleClick} 
       addCheckMark={() => 
       {
+        //change state, and call a callback to change the back end
         this.setState({ amountCompleted: this.state.amountCompleted + 1},
           this.modifyAmountAccomplished)
+          
         
         
     }}
@@ -100,6 +112,7 @@ handleClick (e)
       <div>
         <h1>{this.state.goalname}</h1>
         {this.state.goalname}
+        <h4>{this.state.message}</h4>
         <div className="d-flex flex-row">
           <div>{this.state.boxes}</div>
         </div>

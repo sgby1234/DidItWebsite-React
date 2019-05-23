@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom'
 import '../globals.js';
 
 
+
 export class Signup extends Component {
   constructor(props)
   {
@@ -43,25 +44,12 @@ export class Signup extends Component {
         password: this.state.password,
      })
     .then( res => {
-      /* Print out the return */
-
-        console.log(res);
-        console.log(res.data);
-        
       
-          this.setState({
-          redirect: true
-        })
-       /*  redirect to login page now  - this way has issues. because it puts the message in history.location.message. Which is not a regular prop
-        I think. and so when I do this it works, but when I go straight to the login page, it gets undefined errors. 
-        So I will try the other way, of having a state field that says true or false if I want to redirect. And in the reponse I will set it to true
-        Then in my render, if it is true I will put a <Redirect />
-       this.props.history.push(
-        {
-          pathname: '/login',
-          state: { message: "Thanks for signing up! Please log in below." }
-        }
-       )*/
+       if(res.data)
+       {
+          this.props.history.push('/login');
+       }
+    
     })
   }
 
@@ -69,17 +57,7 @@ export class Signup extends Component {
 
 
   render() {
-    /* If this.state.redirect is true, then render a Redirect to the login page. */
-    if(this.state.redirect)
-      {
-        return (
-          <Redirect to="/login" message="Thanks for signing up! Please log in to access your account."/> 
-        );
-      }
-
-      /* Otherwise render the signup regularly */
-    return (  
-
+    return ( 
 
       <div>
         <NavBar/>
