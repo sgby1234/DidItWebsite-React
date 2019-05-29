@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import NavBar from './NavBar.jsx'
 import axios from 'axios';
 
 export class Friends extends Component {
@@ -52,7 +51,6 @@ export class Friends extends Component {
     render() {
         return (
             <div>
-                <NavBar />
                 <h4 className="text-center">Befriend a user to have your accomplishments shared with them.
                      Your new friend can then choose to befriend you back:</h4>
                 <ul className="list-group">

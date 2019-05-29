@@ -13,26 +13,54 @@ import { NotFoundPage } from './Components/NotFoundPage';
 import { GoalBox } from './Components/GoalBox';
 import { Goal } from './Components/Goal';
 import { Friends} from './Components/Friends';
+import  { NavBar } from './Components/NavBar.jsx'
 
 import './globals.js';
 
 class App extends Component {
+  constructor(props)
+  {
+    super(props)
+   this.state = {
+      login: false,
+      userName: "",
+    }
+
+    this.setLogin = this.setLogin.bind(this);
+    this.logout = this.logout.bind(this)
+  }
+
+  setLogin = (isLoggedIn, userName) => {
+      this.setState({
+        login: isLoggedIn,
+        userName: userName,
+      })
+  }
+
+  logout = () => {
+    this.setState({
+      login: false,
+      userName: ""
+    })
+  }
   render() {
     return (
       <Router>
+        <div>
+        <NavBar  loginStatus={this.state.login} logout={this.logout}/>
         <Switch>
           <Route exact path='/' component={Welcome} />
-          <Route path='/signup' component={Signup} />
-          <Route path='/login' component={LoginPage} />
-          <Route path='/goals' component={Goals} />
+         <Route path='/signup' render={(props) => <Signup isLoggedIn={this.state.login}/> } />
+    <Route path='/login' render={(props) => <LoginPage isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
+          <Route path='/goals' render={(props) => <Goals isLoggedIn={this.state.login}/>} />
           <Route path='/trial' component={ConnectionTrial} />
-          <Route path='/newGoal' component={NewGoal}/>
+          <Route path='/newGoal' render={(props) => <NewGoal isLoggedIn={this.state.login} />} />
           <Route path='/goalBox' component={ GoalBox }/>
-          <Route path='/friends' component = { Friends }/>
-          <Route path='/goal' component={Goal}/>
+          <Route path='/friends' render={(props) => <Friends isLoggedIn={this.state.login} /> }/>
+          <Route path='/goal'  render={(props) => <Goal isLoggedIn={this.state.login}/>} />
           <Route path='' component={ NotFoundPage }/>
         </Switch>
-        
+        </div>
       </Router>
     )
   }

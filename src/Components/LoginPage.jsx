@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Button, Form, FormGroup, FormControl, Jumbotron } from "react-bootstrap";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import NavBar from './NavBar.jsx'
+
 import '../globals.js';
 
 
@@ -47,11 +47,14 @@ export class LoginPage extends Component {
         /*res.data = did they log in successfully*/
         if(res.data)
         {
-            global.loggedIn=true;
+          let loggedIn = res.data
+            
             //get their username
             axios.get(url + "getUserName").then(res => {
               console.log(res.data)
-              global.userName = res.data;
+              let userName = res.data
+              
+              this.props.setLogin(loggedIn, userName);
              })
             this.props.history.push('/');
         }
@@ -70,7 +73,7 @@ export class LoginPage extends Component {
 
     return (
       <div className="Login">
-        <NavBar/>
+       
       <Jumbotron><h1>Login</h1> </Jumbotron>
         
         <form onSubmit={this.handleSubmit}>

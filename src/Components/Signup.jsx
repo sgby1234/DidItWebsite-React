@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import  NavBar  from './NavBar.jsx'
 import '../App.css';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap'
@@ -60,7 +59,6 @@ export class Signup extends Component {
     return ( 
 
       <div>
-        <NavBar/>
         <div className="jumbotron"> <h1 className="display-4">Signup to DidIT</h1></div>
          
   

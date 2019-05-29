@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar.jsx'
 import { Link } from 'react-router-dom';
+import {NewsFeed} from './NewsFeed.jsx';
 import axios from 'axios';
 
 export class Welcome extends Component {
@@ -11,20 +11,46 @@ export class Welcome extends Component {
    }
 
   
+ 
 
 
   render() {
     return (
       <div>
-        <NavBar/>
-        <h2>Welcome to DidIt</h2>
-        <h5>The best way to achieve your goals</h5>
-        <Link to="/signup" >Sign up here</Link>
-        <h5>Already a user?</h5>
-        <Link to="/login">Log in here </Link>
-        <button onClick={this.handleClick}>Click here to test trial</button>
+       if(this.props.isLoggedIn){
+         <LoggedInPage />
+       }
+
+       else {
+         <NotLoggedInPage/>
+       }
       </div>
     )
   }
 }
 
+function NotLoggedInPage(props) {
+  return (
+    <div>
+      <h2>Hey there! Welcome to DidIt. A place where you can track your goals and their progress</h2>
+      <h3>Already a member?</h3>
+      <p> Well then, waste no time. You've got goals to complete! <Link to="/login">Log in here </Link></p>
+
+      <h3>Not a member yet></h3>
+      <p>You've come to the right place. Didit helps you stay on top of your goals. It helps you accomplish and stick to them using positive peer pressure</p>
+      <Link to="/signup" >Sign up here</Link>
+
+
+
+    </div>
+  );
+}
+
+function LoggedInPage(props){
+  return (
+    <div>
+       <NewsFeed />
+    </div>
+
+  )
+}
