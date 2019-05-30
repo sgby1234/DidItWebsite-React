@@ -24,8 +24,8 @@ export class Friends extends Component {
         return (
             <div>
                 <div className = "display-4">Your friends</div>
-                <h2>Looking for more friends? Click <Link to="/befriend">here</Link></h2>
-                <hr class="my-4"></hr>
+                <div className = "lead">Looking for more friends? Click <Link to="/befriend">here</Link></div>
+                <hr classNme="my-4"></hr>
                 {friendElements}
             </div>
         )

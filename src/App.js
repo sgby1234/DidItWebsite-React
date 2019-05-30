@@ -55,14 +55,14 @@ class App extends Component {
           <Route exact path='/' render={(props) => <Welcome {...props} isLoggedIn={this.state.login} />} />
          <Route path='/signup' render={(props) => <Signup {...props} isLoggedIn={this.state.login}/> } />
          <Route path='/login' render={(props) => <LoginPage {...props} isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
-          <Route path='/goals' render={(props) => <Goals isLoggedIn={this.state.login}/>} />
+          <Route path='/goals' render={(props) => <Goals  {...props} isLoggedIn={this.state.login}/>} />
           <Route path='/trial' component={ConnectionTrial} />
           <Route path='/newGoal' render={(props) => <NewGoal isLoggedIn={this.state.login} />} />
           <Route path='/goalBox' component={ GoalBox }/>
           <Route path='/friends' render={(props) => <Friends isLoggedIn={this.state.login} /> }/>
           <Route path='/befriend' render={(props) => <PossibleFriends isLoggedIn={this.state.login} /> }/>
           <Route path='/about' component= { About } />
-          <Route path='/goal'  render={(props) => <Goal isLoggedIn={this.state.login}/>} />
+          <Route path='/goal'  render={(props) => <Goal  {...props} isLoggedIn={this.state.login}/>} />
           <Route path='' component={ NotFoundPage }/>
         </Switch>
        </div>

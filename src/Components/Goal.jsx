@@ -5,10 +5,10 @@ import axios from 'axios';
 
 export class Goal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      goalid: this.props.location.state.goalid,
+      goalid: -1,
       goalname: "yeah",
       amountCompleted: 0,
       totalAmount: 0,
@@ -20,7 +20,9 @@ export class Goal extends Component {
     }
 
 
-    this.handleClick = this.handleClick.bind(this);
+    this.modifyAmountAccomplished = this.modifyAmountAccomplished.bind(this);
+    this.addMessage= this.addMessage.bind(this);
+    this.halfCompleted = this.halfCompleted.bind(this);
 
   }
 
@@ -30,7 +32,7 @@ export class Goal extends Component {
       goalId: this.state.goalid,
       newAmount: this.state.amountCompleted
     }).then((res) => {
-      console.log("Got response " + res.data)
+            console.log("Got response " + res.data)
     }
     )
     //check if they are now finished: and write out message if they are
@@ -44,12 +46,12 @@ export class Goal extends Component {
     }
 
     //if they are halfway finished send a message to the database
-    else if (this.halfcompleted()) {
+    else if (this.halfCompleted()) {
       this.addMessage("Halfway there! I did " + this.state.amountCompleted + " out of " + this.state.totalAmount + " days : " + this.state.goalname);
     }
   }
 
-  halfcompleted() {
+  halfCompleted = () => {
     //adjust the total amount if it is odd
     if (this.state.totalAmount % 2 == 1) {
       var amount = this.state.totalAmount + 1
@@ -80,10 +82,13 @@ export class Goal extends Component {
 
   componentDidMount() {
     console.log("in CMD")
+    this.setState({
+      goalId: this.props.location.state.goalid,
+    })
     axios.get("http://localhost:8080/getGoal", {
       params:
       {
-        goalID: this.state.goalid
+        goalID: this.props.location.state.goalid,
       }
     }).then(res => {
       console.log(res.data)

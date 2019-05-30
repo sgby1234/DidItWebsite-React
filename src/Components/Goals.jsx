@@ -28,7 +28,7 @@ export class Goals extends Component {
 
 
   render() {
-    const goals = this.state.goals.map(obj => <ListGroup.Item  ><Link to={{pathname: "/goal", state: { goalid: obj.goalID}}} 
+    const goals = this.state.goals.map(obj => <ListGroup.Item> <Link to={{pathname: "/goal", state: { goalid: obj.goalID}}} 
     style={{color: "green"}}>{obj.description}</Link></ListGroup.Item> )
     return (
       <div>
