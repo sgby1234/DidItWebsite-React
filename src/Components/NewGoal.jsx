@@ -46,8 +46,20 @@ export class NewGoal extends Component {
             alert("Could not add that goal. Please check your input")
         }
       })
+
+      this.addMessage("Started a new goal! " + this.state.days + " days : " + this.state.name)
   }
 
+  addMessage(message) {
+
+    axios.post("localhost:8080/message", {
+      messageId: undefined,
+      messageText: message,
+      messageDate: new Date().toISOString().substring(0, 10),
+    }).then(res => {
+      console.log(res.data)
+    })
+  }
 
   handleChange = event =>
   {

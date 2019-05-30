@@ -22,11 +22,13 @@ componentDidUpdate(props){
     
     return (
      
-        <nav className="navbar navbar-light bg-light flex-row">
-        <Link to="/signup">Signup</Link>
-        <Link to="/goals">Goals</Link>
-        <Link to="/signup">About</Link>
-        <Link to="/friends">Friends</Link>
+        <nav className="navbar navbar-light fixed-top navbar-expand-md bg-light flex-row">
+        <Link to="/">Home</Link>
+        <Link to='/about'>About</Link>
+        
+
+        {this.props.loginStatus?  <Link to="/goals">Goals</Link> : '' }
+        {this.props.loginStatus?  <Link to="/friends">Friends</Link> : <Link to="/singup">Sign up</Link> }
         {this.props.loginStatus? <a href="" onClick={this.handleLogOut}>Log out</a>: <Link to="/login">Log in</Link> }
     
       </nav>

@@ -20,13 +20,14 @@ export class NewsFeed extends Component {
           this.setState 
           ({
               messages: res.data //ask chaya
-           })
+          })
       });
         
     }
     
     render() {
-        const newsItems = this.state.messages.map(obj =>  <li class="list-group-item">{obj.MessageText}</li>)
+        const newsItems = this.state.messages.map(obj =>  
+        <li class="list-group-item"><div style="color: pink" className="lead">{obj.userName }</div> {"   " + obj.messageText}</li>)
       
         return (
           <div>
