@@ -11,6 +11,8 @@ export  class NavBar extends Component {
       .then( () => {
       //make call to app.js to chnage its state
       this.props.logout()
+      //redirect to home page
+      this.props.history.push('/');
   });
 }
 
@@ -28,7 +30,7 @@ componentDidUpdate(props){
         
 
         {this.props.loginStatus?  <Link to="/goals">Goals</Link> : '' }
-        {this.props.loginStatus?  <Link to="/friends">Friends</Link> : <Link to="/singup">Sign up</Link> }
+        {this.props.loginStatus?  <Link to="/friends">Friends</Link> : <Link to="/signup">Sign up</Link> }
         {this.props.loginStatus? <a href="" onClick={this.handleLogOut}>Log out</a>: <Link to="/login">Log in</Link> }
     
       </nav>

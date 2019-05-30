@@ -13,26 +13,25 @@ export class PossibleFriends extends Component {
         console.log("in CMD")
         axios.get("http://localhost:8080/possibleFriends").then(res => {
             console.log(res.data)
-            this.setState
-                ({
+            this.setState ({
                     friends: res.data.map(item => <li className="list-group-item" key={item.userID.toString()} mykey={item.userID.toString()}>{item.userName}
                         <button type="button" value={item.userID} className="btn btn-warning float-right"
                             onClick={() => this.handleClick(item.userID)}>Befriend</button> </li>)
                 })
-               
-                console.log(this.state.friends.map( (e) => "key: " + e.props.mykey + " value " + e.value))
+
+            console.log(this.state.friends.map((e) => "key: " + e.props.mykey + " value " + e.value))
         })
 
-       
+
     }
 
     handleClick = (idNum) => {
-       
+
         axios.post("http://localhost:8080/addFriend",
             {
                 id: idNum
             }).then(res => {
-                
+
                 //remove this friend from list
                 this.removePossibleFriend(idNum)
                 //send email ¯\_(ツ)_/¯  
@@ -40,9 +39,9 @@ export class PossibleFriends extends Component {
             )
     }
 
-    removePossibleFriend(idNum){
-       
-        let modifiedFriends = this.state.friends.filter(x=> x.props.mykey != idNum);
+    removePossibleFriend(idNum) {
+
+        let modifiedFriends = this.state.friends.filter(x => x.props.mykey != idNum);
         this.setState({
             friends: modifiedFriends
         })

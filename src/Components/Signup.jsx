@@ -1,8 +1,7 @@
 import React, { Component } from "react"
 import '../App.css';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap';
 import '../globals.js';
 
 

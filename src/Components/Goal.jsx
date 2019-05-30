@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { GoalBox } from './GoalBox'
 import axios from 'axios';
 
@@ -21,50 +20,52 @@ export class Goal extends Component {
 
 
     this.modifyAmountAccomplished = this.modifyAmountAccomplished.bind(this);
-    this.addMessage= this.addMessage.bind(this);
+    this.addMessage = this.addMessage.bind(this);
     this.halfCompleted = this.halfCompleted.bind(this);
 
   }
 
   modifyAmountAccomplished() {
     console.log("will send spring request to change with amount " + this.state.amountCompleted);
+    console.log("My goal id is " + this.state.goalid)
     axios.post("http://localhost:8080/updateAmountAccomplished", {
       goalId: this.state.goalid,
       newAmount: this.state.amountCompleted
     }).then((res) => {
-            console.log("Got response " + res.data)
+      console.log("Got response " + res.data)
     }
     )
     //check if they are now finished: and write out message if they are
-    if (this.state.amountCompleted == this.state.totalAmount) {
+    if (this.state.amountCompleted === this.state.totalAmount) {
       this.setState({
         message: "Congratulations " + global.userName + "!! Awesome work!"
       })
 
       //send message to the database
-      if(this.state.isPublic){
+      if (this.state.isPublic) {
         this.addMessage("DidIt!! " + this.state.totalAmount + " days: " + this.state.goalname)
       }
-      
+
     }
 
     //if they are halfway finished send a message to the database
-    else if (this.state.isPublic && this.halfCompleted()) {}
+    else if (this.state.isPublic && this.halfCompleted()) {
       this.addMessage("Halfway there! I did " + this.state.amountCompleted + " out of " + this.state.totalAmount + " days : " + this.state.goalname);
     }
   }
 
   halfCompleted = () => {
     //adjust the total amount if it is odd
-    if (this.state.totalAmount % 2 == 1) {
-      var amount = this.state.totalAmount + 1
+    var amount
+    if (this.state.totalAmount % 2 === 1) {
+      amount = this.state.totalAmount + 1
     }
     else {
-      var amount = this.state.totalAmount;
+      amount = this.state.totalAmount;
     }
 
     //check if they are halfway through
-    if (amount / this.state.amountCompleted == 2) {
+    if (amount / this.state.amountCompleted === 2) {
       return true;
     }
     else {
@@ -72,7 +73,7 @@ export class Goal extends Component {
     }
   }
 
-  addMessage(message) {
+  addMessage = (message) => {
 
     axios.post("http://localhost:8080/message", {
       messageId: undefined,
@@ -85,9 +86,7 @@ export class Goal extends Component {
 
   componentDidMount() {
     console.log("in CMD")
-    this.setState({
-      goalId: this.props.location.state.goalid,
-    })
+
     axios.get("http://localhost:8080/getGoal", {
       params:
       {
@@ -95,14 +94,14 @@ export class Goal extends Component {
       }
     }).then(res => {
       console.log(res.data)
-      this.setState
-        ({
-          amountCompleted: res.data.accomplishedDays,
-          totalAmount: res.data.duration,
-          isPublic: res.data.public,
-          start: new Date(res.data.dateCreated),
-          goalname: res.data.description,
-        })
+      this.setState({
+        goalid: this.props.location.state.goalid,
+        amountCompleted: res.data.accomplishedDays,
+        totalAmount: res.data.duration,
+        isPublic: res.data.public,
+        start: new Date(res.data.dateCreated),
+        goalname: res.data.description,
+      })
 
       //add values for true
       for (let i = 0; i < this.state.amountCompleted; i++) {

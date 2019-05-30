@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { Button, Form, FormGroup, FormControl, Jumbotron } from "react-bootstrap";
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 import '../globals.js';
 

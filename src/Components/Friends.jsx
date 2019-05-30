@@ -20,7 +20,7 @@ export class Friends extends Component {
         })
     }
     render() {
-        const friendElements = this.state.friends.map(friend => <li>{friend.userName}</li>)
+        const friendElements = this.state.friends.map(friend => <li  className="list-group-item">{friend.userName}</li>)
         return (
             <div>
                 <div className = "display-4">Your friends</div>

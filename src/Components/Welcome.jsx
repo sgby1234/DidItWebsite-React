@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {NewsFeed} from './NewsFeed.jsx';
-import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 
 export class Welcome extends Component {
 
@@ -25,7 +23,7 @@ export class Welcome extends Component {
 
 function NotLoggedInPage(props) {
   return (
-    <div>
+    <div className="text-center">
       <h2>Hey there! Welcome to DidIt. A place where you can track your goals and their progress</h2>
       <h3>Already a member?</h3>
       <p> Well then, waste no time. You've got goals to complete! <Link to="/login">Log in here </Link></p>

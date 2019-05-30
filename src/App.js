@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Signup } from './Components/Signup.jsx';
 import { Welcome } from './Components/Welcome.jsx'
-import { PageSideBar } from "./Components/PageSideBar.jsx";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { LoginPage } from './Components/LoginPage';
 import { ConnectionTrial } from './ConnectionTrial';
