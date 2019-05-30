@@ -6,7 +6,7 @@ export class NewsFeed extends Component {
         super(props)
     
         this.state = {
-             message: []
+             messages: []
         }
     }
 

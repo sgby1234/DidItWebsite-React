@@ -13,6 +13,11 @@ export  class NavBar extends Component {
       this.props.logout()
   });
 }
+
+
+componentDidUpdate(props){
+  console.log("navbar updated")
+}
   render() {
     
     return (
@@ -22,7 +27,7 @@ export  class NavBar extends Component {
         <Link to="/goals">Goals</Link>
         <Link to="/signup">About</Link>
         <Link to="/friends">Friends</Link>
-        {this.props.loginstatus? <a  href="" onClick={this.handleLogOut}>Log out</a>: <Link to="/login">Log in</Link> }
+        {this.props.loginStatus? <a href="" onClick={this.handleLogOut}>Log out</a>: <Link to="/login">Log in</Link> }
     
       </nav>
     )

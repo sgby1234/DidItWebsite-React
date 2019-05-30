@@ -30,10 +30,10 @@ class App extends Component {
     this.logout = this.logout.bind(this)
   }
 
-  setLogin = (isLoggedIn, userName) => {
+  setLogin = (isLoggedIn, name) => {
       this.setState({
         login: isLoggedIn,
-        userName: userName,
+        userName: name,
       })
   }
 
@@ -43,6 +43,7 @@ class App extends Component {
       userName: ""
     })
   }
+
   render() {
     return (
       <Router>
@@ -50,8 +51,8 @@ class App extends Component {
         <NavBar  loginStatus={this.state.login} logout={this.logout}/>
         <Switch>
           <Route exact path='/' component={Welcome} />
-         <Route path='/signup' render={(props) => <Signup isLoggedIn={this.state.login}/> } />
-    <Route path='/login' render={(props) => <LoginPage isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
+         <Route path='/signup' render={(props) => <Signup {...props} isLoggedIn={this.state.login}/> } />
+         <Route path='/login' render={(props) => <LoginPage {...props} isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
           <Route path='/goals' render={(props) => <Goals isLoggedIn={this.state.login}/>} />
           <Route path='/trial' component={ConnectionTrial} />
           <Route path='/newGoal' render={(props) => <NewGoal isLoggedIn={this.state.login} />} />
@@ -60,7 +61,7 @@ class App extends Component {
           <Route path='/goal'  render={(props) => <Goal isLoggedIn={this.state.login}/>} />
           <Route path='' component={ NotFoundPage }/>
         </Switch>
-        </div>
+       </div>
       </Router>
     )
   }

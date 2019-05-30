@@ -30,6 +30,7 @@ export class LoginPage extends Component {
   }
 
   handleSubmit = event => {
+    console.log("props " + this.props)
     let url = "http://localhost:8080/";
  
     event.preventDefault();
@@ -56,6 +57,7 @@ export class LoginPage extends Component {
               
               this.props.setLogin(loggedIn, userName);
              })
+
             this.props.history.push('/');
         }
         else
