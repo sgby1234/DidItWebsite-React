@@ -47,12 +47,14 @@ export class NewGoal extends Component {
         }
       })
 
-      this.addMessage("Started a new goal! " + this.state.days + " days : " + this.state.name)
+      if(this.state.isPublic){
+         this.addMessage("Started a new goal! " + this.state.days + " days : " + this.state.name)
+      }
   }
 
   addMessage(message) {
 
-    axios.post("localhost:8080/message", {
+    axios.post("http://localhost:8080/message", {
       messageId: undefined,
       messageText: message,
       messageDate: new Date().toISOString().substring(0, 10),

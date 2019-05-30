@@ -42,11 +42,14 @@ export class Goal extends Component {
       })
 
       //send message to the database
-      this.addMessage("DidIt!! " + this.state.totalAmount + " days: " + this.state.goalname)
+      if(this.state.isPublic){
+        this.addMessage("DidIt!! " + this.state.totalAmount + " days: " + this.state.goalname)
+      }
+      
     }
 
     //if they are halfway finished send a message to the database
-    else if (this.halfCompleted()) {
+    else if (this.state.isPublic && this.halfCompleted()) {}
       this.addMessage("Halfway there! I did " + this.state.amountCompleted + " out of " + this.state.totalAmount + " days : " + this.state.goalname);
     }
   }
@@ -71,7 +74,7 @@ export class Goal extends Component {
 
   addMessage(message) {
 
-    axios.post("localhost:8080/message", {
+    axios.post("http://localhost:8080/message", {
       messageId: undefined,
       messageText: message,
       messageDate: new Date().toISOString().substring(0, 10),
