@@ -52,7 +52,7 @@ export class PossibleFriends extends Component {
     render() {
         return (
             <div>
-                <Link to="/friends">Back to your friends/></Link>
+                <Link className="badge badge-primary" to="/friends">Back to your friends></Link>
                 <h4 className="text-center">Befriend a user to have your accomplishments shared with them.
                      Your new friend can then choose to befriend you back:</h4>
                 <hr className="my-4"></hr>
