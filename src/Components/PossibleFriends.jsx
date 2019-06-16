@@ -41,7 +41,7 @@ export class PossibleFriends extends Component {
 
     removePossibleFriend(idNum) {
 
-        let modifiedFriends = this.state.friends.filter(x => x.props.mykey != idNum);
+        let modifiedFriends = this.state.friends.filter(x => x.props.mykey !== idNum);
         this.setState({
             friends: modifiedFriends
         })
@@ -51,7 +51,7 @@ export class PossibleFriends extends Component {
     render() {
         return (
             <div>
-                <Link className="badge badge-primary" to="/friends">Back to your friends</Link>
+                <Link to="/friends"><i class="fas fa-arrow-left"></i>Back to your friends</Link>
                 <h4 className="text-center">Befriend a user to have your accomplishments shared with them.
                      Your new friend can then choose to befriend you back:</h4>
                 <hr className="my-4"></hr>
