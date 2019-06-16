@@ -55,7 +55,7 @@ class App extends Component {
          <Route path='/login' render={(props) => <LoginPage {...props} isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
           <Route path='/goals' render={(props) => <Goals  {...props} isLoggedIn={this.state.login}/>} />
           <Route path='/trial' component={ConnectionTrial} />
-          <Route path='/newGoal' render={(props) => <NewGoal isLoggedIn={this.state.login} />} />
+          <Route path='/newGoal' render={(props) => <NewGoal {...props} isLoggedIn={this.state.login} />} />
           <Route path='/goalBox' component={ GoalBox }/>
           <Route path='/friends' render={(props) => <Friends isLoggedIn={this.state.login} /> }/>
           <Route path='/befriend' render={(props) => <PossibleFriends isLoggedIn={this.state.login} /> }/>

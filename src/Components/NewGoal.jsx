@@ -59,11 +59,13 @@ export class NewGoal extends Component {
       messageDate: new Date().toISOString().substring(0, 10),
     }).then(res => {
       console.log(res.data)
+      this.props.history.push('/goals')
     })
   }
 
   handleChange = event =>
   {
+    console.log(event.target.type)
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
      this.setState ({
       [event.target.id]: value,

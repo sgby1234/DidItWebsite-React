@@ -21,7 +21,6 @@ componentDidUpdate(props){
   console.log("navbar updated")
 }
   render() {
-    
     return (
      
         <nav className="navbar navbar-light fixed-top navbar-expand-md bg-light flex-row">
