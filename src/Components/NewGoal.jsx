@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import axios from 'axios';
-import '../globals.js';
 
 export class NewGoal extends Component {
 
@@ -20,37 +19,42 @@ export class NewGoal extends Component {
   }
 
 
-  handleSubmit(event)
-  {
-    axios.post("http://localhost:8080/addGoal", 
-    {
+  async handleSubmit(event)
+  { 
+    const response = this.postNewGoal( {
       goalID: null,
       duration: this.state.days,
       accomplishedDays: 0,
       isPublic: this.state.isPublic,
       description: this.state.name,
       dateCreated: new Date().toISOString().substring(0,10),
-
-    }).then(res =>
-      {
-       
-        //successful, redirect to all goals
-        if(res.data)
-        {
-          this.props.history.push('/goals');
-        }
-        //display message for unsuccessful erros
-        else 
-        {
-            alert("Could not add that goal. Please check your input")
-        }
-      })
-
+    }).then(() => {
       if(this.state.isPublic){
+        alert("adding message")
          this.addMessage("Started a new goal! " + this.state.days + " days : " + this.state.name)
       }
+           alert("will push history"); 
+           this.props.history.push("/goals");
+        
+    })
+ 
+    
   }
+    
 
+  postNewGoal(body){
+    return axios.post("http://localhost:8080/addGoal", 
+    {
+      goalID: body.goalID,
+      duration: body.duration,
+      accomplishedDays: 0,
+      isPublic: body.isPublic,
+      description: body.description,
+      dateCreated: new Date().toISOString().substring(0,10),
+
+    } )
+  
+}
   addMessage(message) {
 
     axios.post("http://localhost:8080/message", {
@@ -59,13 +63,11 @@ export class NewGoal extends Component {
       messageDate: new Date().toISOString().substring(0, 10),
     }).then(res => {
       console.log(res.data)
-      this.props.history.push('/goals')
     })
   }
 
   handleChange = event =>
   {
-    console.log(event.target.type)
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
      this.setState ({
       [event.target.id]: value,

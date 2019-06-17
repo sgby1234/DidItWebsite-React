@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GoalBox } from './GoalBox'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export class Goal extends Component {
   constructor(props) {
@@ -26,8 +27,7 @@ export class Goal extends Component {
   }
 
   modifyAmountAccomplished() {
-    console.log("will send spring request to change with amount " + this.state.amountCompleted);
-    console.log("My goal id is " + this.state.goalid)
+  
     axios.post("http://localhost:8080/updateAmountAccomplished", {
       goalId: this.state.goalid,
       newAmount: this.state.amountCompleted
@@ -41,7 +41,7 @@ export class Goal extends Component {
         message: "Congratulations " + global.userName + "!! Awesome work!"
       })
 
-      //send message to the database
+      //send message to the database if this goal is public
       if (this.state.isPublic) {
         this.addMessage("DidIt!! " + this.state.totalAmount + " days: " + this.state.goalname)
       }
@@ -79,8 +79,6 @@ export class Goal extends Component {
       messageId: undefined,
       messageText: message,
       messageDate: new Date().toISOString().substring(0, 10),
-    }).then(res => {
-      console.log(res.data)
     })
   }
 
@@ -93,7 +91,6 @@ export class Goal extends Component {
         goalID: this.props.location.state.goalid,
       }
     }).then(res => {
-      console.log(res.data)
       this.setState({
         goalid: this.props.location.state.goalid,
         amountCompleted: res.data.accomplishedDays,
@@ -142,6 +139,7 @@ export class Goal extends Component {
   render() {
     return (
       <div>
+        <Link to="/goals"><i class="fas fa-arrow-left"></i> Back to your goals</Link>
         <h1>{this.state.goalname}</h1>
         {this.state.goalname}
         <h4>{this.state.message}</h4>

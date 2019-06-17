@@ -52,7 +52,6 @@ export class LoginPage extends Component {
             axios.get(url + "getUserName").then(res => {
               console.log(res.data)
               let userName = res.data
-              
               this.props.setLogin(loggedIn, userName);
              })
 

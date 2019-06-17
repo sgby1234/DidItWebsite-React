@@ -37,11 +37,13 @@ class App extends Component {
       })
   }
 
-  logout = () => {
+  logout(){
+    
     this.setState({
       login: false,
       userName: ""
     })
+    this.props.history.replace('/');
   }
 
   render() {
@@ -51,20 +53,20 @@ class App extends Component {
         <NavBar  loginStatus={this.state.login} logout={this.logout}/>
         <Switch>
           <Route exact path='/' render={(props) => <Welcome {...props} isLoggedIn={this.state.login} />} />
-         <Route path='/signup' render={(props) => <Signup {...props} isLoggedIn={this.state.login}/> } />
-         <Route path='/login' render={(props) => <LoginPage {...props} isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
+          <Route path='/signup' render={(props) => <Signup {...props} isLoggedIn={this.state.login}/> } />
+          <Route path='/login' render={(props) => <LoginPage {...props} isLoggedIn={this.state.login} setLogin={this.setLogin}/> } />
           <Route path='/goals' render={(props) => <Goals  {...props} isLoggedIn={this.state.login}/>} />
-          <Route path='/trial' component={ConnectionTrial} />
           <Route path='/newGoal' render={(props) => <NewGoal {...props} isLoggedIn={this.state.login} />} />
           <Route path='/goalBox' component={ GoalBox }/>
-          <Route path='/friends' render={(props) => <Friends isLoggedIn={this.state.login} /> }/>
-          <Route path='/befriend' render={(props) => <PossibleFriends isLoggedIn={this.state.login} /> }/>
-          <Route path='/about' component= { About } />
+          <Route path='/friends' render={(props) => <Friends  {...props} isLoggedIn={this.state.login} /> }/>
+          <Route path='/befriend' render={(props) => <PossibleFriends {...props} isLoggedIn={this.state.login} /> }/>
+          <Route path='/about' render={(props) => <About {...props} isLoggedIn={this.state.login} /> } />
           <Route path='/goal'  render={(props) => <Goal  {...props} isLoggedIn={this.state.login}/>} />
           <Route path='' component={ NotFoundPage }/>
         </Switch>
        </div>
       </Router>
+
     )
   }
 }
